@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thylemeaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: Head">
+<body class="hold-transition sidebar-mini layout-fixed">
+
+	<div class="wrapper" th:replace="layout/layout :: BasePage"></div>
+	
+	  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Formulario de Supervisor</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">General Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+	
+	    <section class="content">
+      <div class="container-fluid">
+        <div class="row vh-100 m-0 justify-content-center">
+          <!-- left column --> 
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title" th:text="${titulo}"></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form th:action="@{/regSupervisor}" th:object="${supervisor}" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre Completo</label>
+                    <input th:errorclass="'form-control alert-danger'" th:field="*{nombre}" type="text" class="form-control" name="nombre" placeholder="Nombre">
+                  </div>
+                  
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Cedula</label>
+                    <input th:errorclass="'form-control alert-danger'" th:field="*{cedula}" type="text" class="form-control" name="nombre" placeholder="Cedula">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Edad</label>
+                    <input th:errorclass="'form-control alert-danger'" th:field="*{edad}" type="number" class="form-control" name="nombre" placeholder="edad">
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Usuario de Ingreso</label>
+                    <input type="text" th:errorclass="'form-control alert-danger'" th:field="*{usuario.username}" class="form-control" name="username" placeholder="ej: user0001">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Contraseña</label>
+                    <input type="password" th:errorclass="'form-control alert-danger'" th:field="*{usuario.password}" class="form-control" name="Constraseña" >
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" name="password2" >
+                  </div>
+                  
+                  <div class="form-group">
+                  <label>Seleccionar Rol</label>
+                  <select class="form-control select2" style="width: 100%;" name="roles" disabled>
+                    <option value="1" >ROL SUPERVISOR</option>
+                    
+                    
+
+                  </select>
+                </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <input type="submit" class="btn btn-primary" value="Registar">
+                </div>
+                <input type="hidden" th:field="*{usuario.id}">
+                <input type="hidden" th:field="*{usuario.roles}">
+              </form>
+            </div>
+            </div>
+            
+            </div>
+            </div>
+            </section>
+            </div>
+           
+<footer th:replace="layout/layout :: Footer"></footer>
+	<!-- ./wrapper -->
+	<div th:replace="layout/layout :: Scripts"></div>
+
+</body>
+</html>

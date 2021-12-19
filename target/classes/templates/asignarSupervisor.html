@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thylemeaf.org/extras/spring-security">
+
+<head th:replace="layout/layout :: Head">
+<body class="hold-transition sidebar-mini layout-fixed">
+
+	<div class="wrapper" th:replace="layout/layout :: BasePage"></div>
+	
+	  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Formulario de Supervisor</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">General Form</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+	
+	    <section class="content">
+      <div class="container-fluid">
+        <div class="row vh-100 m-0 justify-content-center">
+          <!-- left column --> 
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title" th:text="${titulo}"></h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form th:action="@{/asignarSupervisor}" th:object="${vigilante}" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre Completo</label>
+                    <input disabled th:errorclass="'form-control alert-danger'" th:field="*{nombre}" type="text" class="form-control" name="nombre" placeholder="Nombre">
+                  </div>
+                  
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Cedula</label>
+                    <input  disabled th:errorclass="'form-control alert-danger'" th:field="*{cedula}" type="text" class="form-control" name="nombre" placeholder="Cedula">
+                  </div>
+
+                  
+                  <div class="form-group">
+                  <label>Seleccione Supervisor</label>
+                  <select class="form-control select2" style="width: 100%;" name="supervisorSelect">
+                    <option th:each="super : ${supervisores}" th:value="${super.cedula}" th:text="${super.cedula} + ' - ' + ${super.nombre}"></option>
+
+                  </select>
+                </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <input type="submit" class="btn btn-primary" value="Registar">
+                </div>
+                <input type="hidden" th:field="*{cedula}">
+                <input type="hidden" th:field="*{nombre}">
+                <input type="hidden" th:field="*{edad}">
+                <input type="hidden" th:field="*{usuario}">
+              </form>
+            </div>
+            </div>
+            
+            </div>
+            </div>
+            </section>
+            </div>
+           
+<footer th:replace="layout/layout :: Footer"></footer>
+	<!-- ./wrapper -->
+	<div th:replace="layout/layout :: Scripts"></div>
+
+</body>
+</html>
